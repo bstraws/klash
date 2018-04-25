@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'klash.wsgi.application'
 #        "ROUTING": "sensors.routing.application",
 #    }
 #}
-
+#
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
