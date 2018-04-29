@@ -2,6 +2,8 @@ from channels.generic.websocket import WebsocketConsumer
 import json
 
 class ChatConsumer(WebsocketConsumer):
+    groups = ["broadcast"]
+    
     def connect(self):
         self.accept()
         message = 'welcome aboard'

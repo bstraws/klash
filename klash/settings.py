@@ -25,8 +25,7 @@ ASGI_APPLICATION = 'klash.routing.application'
 
 #CHANNEL_LAYERS = {
 #    "default": {
-#        "BACKEND": "asgiref.inmemory.ChanelLayer",
-#        "ROUTING": "klash.routing.application",
+#        "BACKEND": "channels.layers.InMemoryChanelLayer",
 #    }
 #}
 
@@ -40,7 +39,7 @@ SECRET_KEY = 'a#jy6fueo$7t5lw!(w4ljm_8)hqt$ufi9wqfl+h4z-9op*!v%q'
 DEBUG = True
 
 # WARNING DO NOT DO THIS!!!
-# ALLOWED_HOSTS = ['192.168.0.5']
+#ALLOWED_HOSTS = ['192.168.0.4']
 
 ALLOWED_HOSTS = []
 
@@ -55,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'channels',
     'sensors',
+    'cameras',
 ]
 
 MIDDLEWARE = [
