@@ -39,9 +39,9 @@ SECRET_KEY = 'a#jy6fueo$7t5lw!(w4ljm_8)hqt$ufi9wqfl+h4z-9op*!v%q'
 DEBUG = True
 
 # WARNING DO NOT DO THIS!!!
-#ALLOWED_HOSTS = ['192.168.0.4']
+ALLOWED_HOSTS = ['192.168.0.2']
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'channels',
     'sensors',
     'cameras',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

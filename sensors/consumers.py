@@ -1,14 +1,17 @@
 from channels.generic.websocket import WebsocketConsumer
 import json
+from django.core import serializers
+from .models import tempature
 
 class ChatConsumer(WebsocketConsumer):
-    groups = ["broadcast"]
-    
+#    groups = ["broadcast"]
+
     def connect(self):
         self.accept()
-        message = 'welcome aboard'
+        message = tempature.objects.filter()
+        message_serialized = serializers.serialize('json', message)
         self.send(text_data=json.dumps({
-            'message': message
+            'message': message_serialized
         }))
 
     def disconnect(self, close_code):
