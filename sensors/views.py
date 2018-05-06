@@ -7,6 +7,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 #from rest_framework import status
 from .serializers import TempSerializer
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
 
 def index(request):
     return render(request, 'sensors/index.html', {})
@@ -23,6 +25,7 @@ class TempViewSet(viewsets.ModelViewSet):
 @api_view(['GET', 'PUT'])
 def temp_update(request):
     queryset = tempature.objects.filter()[0]
+    channel_layer = get_channel_layer()
     if request.method == 'GET':
         serializer = TempSerializer(queryset)
         return Response(serializer.data)
@@ -30,6 +33,11 @@ def temp_update(request):
         serializer = TempSerializer(queryset, data=request.data)
         if serializer.is_valid():
             serializer.save()
+            async_to_sync(channel_layer.group_send)(
+                "broadcast", {"type": "broadcast.message",
+                "text": json.dumps(serializer.data),
+                }
+            )
             return Response(serializer.data)
         else:
             return Response(

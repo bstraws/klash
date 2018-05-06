@@ -23,11 +23,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ASGI_APPLICATION = 'klash.routing.application'
 
-#CHANNEL_LAYERS = {
-#    "default": {
-#        "BACKEND": "channels.layers.InMemoryChanelLayer",
-#    }
-#}
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [('127.0.0.1', 6379)]
+        },
+    },
+}
 
 # End channels settings
 
@@ -39,7 +42,7 @@ SECRET_KEY = 'a#jy6fueo$7t5lw!(w4ljm_8)hqt$ufi9wqfl+h4z-9op*!v%q'
 DEBUG = True
 
 # WARNING DO NOT DO THIS!!!
-ALLOWED_HOSTS = ['192.168.0.2']
+ALLOWED_HOSTS = ['192.168.0.7']
 
 #ALLOWED_HOSTS = []
 

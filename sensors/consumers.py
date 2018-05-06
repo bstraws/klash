@@ -2,11 +2,13 @@ from channels.generic.websocket import WebsocketConsumer
 import json
 from django.core import serializers
 from .models import tempature
+from asgiref.sync import async_to_sync
 
 class ChatConsumer(WebsocketConsumer):
-#    groups = ["broadcast"]
+    groups = ["broadcast"]
 
     def connect(self):
+        async_to_sync(self.channel_layer.group_add)("broadcast", self.channel_name)
         self.accept()
         message = tempature.objects.filter()
         message_serialized = serializers.serialize('json', message)
@@ -15,7 +17,7 @@ class ChatConsumer(WebsocketConsumer):
         }))
 
     def disconnect(self, close_code):
-        pass
+        async_to_sync(self.channel_layer.group_discard)("broadcast", self.channel_name)
 
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
@@ -24,3 +26,5 @@ class ChatConsumer(WebsocketConsumer):
         self.send(text_data=json.dumps({
             'message': message
         }))
+    def broadcast_message(self, event):
+        self.send(text_data=json.dumps({'message': event["text"]}))
