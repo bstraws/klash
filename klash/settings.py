@@ -42,7 +42,7 @@ SECRET_KEY = 'a#jy6fueo$7t5lw!(w4ljm_8)hqt$ufi9wqfl+h4z-9op*!v%q'
 DEBUG = True
 
 # WARNING DO NOT DO THIS!!!
-ALLOWED_HOSTS = ['192.168.0.7']
+ALLOWED_HOSTS = ['192.168.0.155','127.0.0.1']
 
 #ALLOWED_HOSTS = []
 
@@ -127,7 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 

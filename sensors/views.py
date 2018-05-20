@@ -33,9 +33,10 @@ def temp_update(request):
         serializer = TempSerializer(queryset, data=request.data)
         if serializer.is_valid():
             serializer.save()
+            message = tempature.objects.filter().values('temp', 'hum')
             async_to_sync(channel_layer.group_send)(
                 "broadcast", {"type": "broadcast.message",
-                "text": json.dumps(serializer.data),
+                "text": json.dumps(list(message))
                 }
             )
             return Response(serializer.data)
