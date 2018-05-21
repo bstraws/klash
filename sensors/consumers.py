@@ -16,5 +16,5 @@ class tempConsumer(WebsocketConsumer):
     def disconnect(self, close_code):
         async_to_sync(self.channel_layer.group_discard)("tempature", self.channel_name)
 
-    def broadcast_message(self, event):
+    def temp_message(self, event):
         self.send(event["text"])
