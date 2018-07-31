@@ -1,0 +1,21 @@
+
+<script>
+    var tempSocket = new WebSocket(
+        'ws://' + window.location.host +
+        '/ws/sensors/temp');
+
+    tempSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        var temp = data[0].temp+'&#176';
+        var hum = data[0].hum+'&#37';
+//          console.log(data);
+//          console.log(temp);
+//          console.log(hum);
+        document.getElementById("temperature").innerHTML = temp;
+        document.getElementById("humidity").innerHTML = hum;
+    };
+
+    tempSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+</script>

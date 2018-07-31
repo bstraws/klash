@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from .models import tempature
+from .models import temperature
 
-#class TempSerializer(serializers.HyperlinkedModelSerializer):
+
 class TempSerializer(serializers.ModelSerializer):
     class Meta:
-        model = tempature
+        model = temperature
         fields = ('temp', 'hum')

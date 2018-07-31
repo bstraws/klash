@@ -1,14 +1,155 @@
 <!-- chat/templates/chat/index.html -->
-<!DOCTYPE html>
+{% include 'klash/nav.html' %}
+{% include 'sensors/weather.html' %}
+{% include 'sensors/temperature.html' %}
+{% load static %}
 <html>
 <head>
     <meta charset="utf-8"/>
     <title>Index</title>
+<style>
+  .navbar{
+    bg: light;
+  }
+  .icons {
+    padding-right: 8px;
+  }
+</style>
+
 </head>
 <body>
 
-  <a href='/sensors/'>sensors</a><br/>
-  <a href='/cameras/'>cameras</a>
+  <div class="container" align="center">
+    <div class="row justify-content-left">
+      <div class="col-sm-6">
+        <a>Currently: </a>
+        <div class="row justify-content-center align-items-center">
+            <figure class="icons my-auto">
+            <canvas id="weather" width="30" height="30">
+            </canvas>
+          </figure>
+          <a href="" data-toggle="modal" data-target="#forecastModal"><h1 id="cur_temp"></h1></a>
+        </div>
+        <a id="high_low"></a><br />
+        <br />
+      </div>
+      <div class="col-sm-6">
+        <a>Inside: </a><h1 id="temperature"></h1>
+        <a id="humidity"></a>
+        <br />
+        <br />
+      </div>
+    </div>
+  </div>
+  <div class="container" align="center">
+  <div class="row justify-content-center">
+    <div class="container" align="center">
+      <div class="row justify-content-center">
+      <div class="col-sm-6">
+        <div class="card pi-hole text-white bg-primary mb-3">
+          <div class="card-body">
+            <h3 class="card-title">Cameras</h3>
+            <p class="card-text">Who's out there?</p>
+            <a href='/cameras/'></a>
+          </div>
+        </div>
+      </div>
+        <div class="col-sm-6">
+          <div class="card pi-hole text-white bg-success mb-3">
+            <div class="card-body">
+              <h3 class="card-title">Spotify</h3>
+              <p class="card-text">Media Player</p>
+              <a href='/sensors/spotify/'></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="row justify-content-center">
+      <div class="container" align="center">
+        <div class="row justify-content-center">
+          <div class="col-sm-6">
+            <div class="card pi-hole text-white bg-warning mb-3">
+              <div class="card-body">
+                <h3 class="card-title">Pi-Hole</h3>
+                <p class="card-text">Admin</p>
+                <a href='/sensors/pi-hole/'></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card pi-hole text-white bg-info mb-3">
+              <div class="card-body">
+                <h3 class="card-title">System</h3>
+                <p class="card-text">Server Statistics</p>
+                <a href='/sensors/system/'></a>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 
+<!-- Modal -->
+<div class="modal fade" id="forecastModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Current Weather</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><a>Summary: </a><b><a id="summary"></a></b></p>
+        <p><a>Feels Like: </a><b><a id="feels_like"></a></b></p>
+        <p><a>Humidity: </a><b><a id="cur_hum"></a></b></p>
+        <p><a>Dewpoint: </a><b><a id="dewpoint"></a></b></p>
+        <p><a>Wind Speed: </a><b><a id="wind_speed"></a></b></p>
+        <p><a>Gusting: </a><b><a id="wind_gust"></a></b></p>
+        <p><a>Last Updated: </a><b><time id="last_updated"></time></p>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <a href='https://darksky.net/poweredby/'>Powered by Dark Sky</a>
+        <button type="button align-left" onclick=update()
+          class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(".pi-hole").click(function() {
+    window.location = $(this).find("a").attr("href");
+    return false;
+  });
+</script>
+
+<script src={% static '/js/skycons.js' %}></script>
+<!--
+<script>
+  console.log(icon);
+  var skycons = new Skycons();
+  skycons.add(document.getElementById("weather"), icon);
+  skycons.play();
+</script>
+
+<script>
+  window.addEventListener("load", function (){
+  var icons = new Skycons(),
+      list  = [
+        "clear-day", "clear-night", "partly-cloudy-day",
+        "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+        "fog"
+      ],
+      i;
+  for(i = list.length; i--; )
+    icons.set(list[i], list[i]);
+  icons.play();
+});
+</script>
+-->
 </html>

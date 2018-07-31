@@ -42,7 +42,7 @@ SECRET_KEY = 'a#jy6fueo$7t5lw!(w4ljm_8)hqt$ufi9wqfl+h4z-9op*!v%q'
 DEBUG = True
 
 # WARNING DO NOT DO THIS!!!
-ALLOWED_HOSTS = ['192.168.0.155','127.0.0.1']
+ALLOWED_HOSTS = ['192.168.0.155','127.0.0.1', 'home.rw']
 
 #ALLOWED_HOSTS = []
 
@@ -139,5 +139,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/klash/static/'
 STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'klash/static/'),)

@@ -1,0 +1,51 @@
+{% include 'klash/nav.html' %}
+<!--
+<link rel="Stylesheet" href="{{ STATIC_URL }}sensors.css" />
+-->
+<html>
+<head>
+  <style>
+    body {
+      overflow: hidden;
+    }
+.frame {
+  height: 1px;
+  min-height: 100%;
+
+}
+  </style>
+
+<!--
+
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+display: block;
+
+footer {
+  position: fixed;
+  height: 0px;
+  bottom: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+seamless="seamless"
+
+
+    <meta charset="utf-8"/>
+    <title>Index</title>
+    -->
+</head>
+<body>
+  <div id="frame">
+    <iframe id=spotify src="http://192.168.0.155:6680/iris/#/" width=100%
+     frameborder="0" scroll="auto"></iframe>
+  </div>
+</body>
+<script>
+var ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+var height = (ios) ? screen.height-171 : window.innerHeight-56;
+document.getElementById("spotify").height=height;
+</script>
+</html>
+<!--height=1039-->

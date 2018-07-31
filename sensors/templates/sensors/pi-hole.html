@@ -1,0 +1,40 @@
+{% include 'klash/nav.html' %}
+
+<link rel="Stylesheet" href="/static/sensors.css" />
+<html>
+<head>
+  <style>
+    body {
+      margin: 0px;
+      padding: 0px;
+      border: 0px;
+      overflow: hidden;
+      display: block;
+    }
+    footer {
+      position: fixed;
+      height: 0px;
+      bottom: 0px;
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+    }
+  </style>
+    <meta charset="utf-8"/>
+    <title>Index</title>
+</head>
+<body>
+  <div>
+<!--
+    <object name=pi-hole data=http://192.168.0.150/admin/ width=100% height=900>
+      <embed src=http://192.168.0.150/admin/></embed></object>
+-->
+    <iframe id=pi-hole src="http://192.168.0.150/admin/" width=100%
+    frameborder="0" seamless="seamless"></iframe>
+  </div>
+</body>
+<script>
+var ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+var height = (ios) ? screen.height-171 : window.innerHeight-56;
+document.getElementById("pi-hole").height=height;
+</script>
+</html>

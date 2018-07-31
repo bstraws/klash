@@ -2,3 +2,4 @@ asgiref==2.3.0
 channels==2.1.0
 Django==2.0.4
 djangorestframework==3.8.2
+requests==2.18.4

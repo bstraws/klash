@@ -1,0 +1,35 @@
+<!--
+<body>
+  <div id="cur_temp"></div><br />
+  <div id="feels_like"></div><br />
+  <div id="cur_hum"></div><br />
+  <div id="last_updated"></div><br />
+  <button onclick=update()>update</button><br />
+  <a href='https://darksky.net/powerdby/'>Powered by Dark Sky</a><br><br>
+</body>
+-->
+
+
+<body>
+  <a href='/'>back</a><br><br>
+    <p id="temperature"></p><br>
+    <p id="humidity"></p>
+</body>
+
+
+
+<div class="container" align="center">
+  <div class="row justify-content-center">
+    <div class="col-sm-6">
+      <a>Currently: </a><a href="" data-toggle="modal" data-target="#forecastModal"><h1 id="cur_temp" ></h1></a>
+      <a id="high_low"></a><br />
+      <br />
+    </div>
+    <div class="col-sm-6">
+      <a>Inside: </a><h1 id="temperature"></h1>
+      <a id="humidity"></a>
+      <br />
+      <br />
+    </div>
+  </div>
+</div>

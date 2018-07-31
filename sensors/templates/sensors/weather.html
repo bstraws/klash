@@ -1,0 +1,80 @@
+
+<script>
+    var forecastSocket = new WebSocket(
+        'ws://' + window.location.host +
+        '/ws/sensors/forecast');
+
+    forecastSocket.onmessage = function(e) {
+        var weather = JSON.parse(e.data);
+        var cur_temp = Math.round(weather.currently.temperature)+'&#176';
+        var feels_like = Math.round(weather.currently.apparentTemperature)+'&#176';
+        var cur_hum = Math.round(weather.currently.humidity*100)+'&#37';
+        var cur_press = weather.currently.pressure;
+        var unix_date = weather.currently.time;
+        var updated = new Date(unix_date*1000);
+        var month = updated.getMonth()+1;
+        var date = updated.getDate();
+        var hours = updated.getHours();
+        var minutes = '0'+ updated.getMinutes();
+        var last_updated = hours+':'+ minutes.substr(-2);
+        var high = Math.round(weather.daily.data[0].temperatureHigh)+'&#176';
+        var low = Math.round(weather.daily.data[0].temperatureLow)+'&#176';
+        var high_low = low+'/ '+high;
+        var icon = weather.currently.icon;
+        var summary = weather.daily.summary;
+        var wind_speed = Math.round(weather.currently.windSpeed);
+        var wind_gust = Math.round(weather.currently.windGust);
+        var dewpoint = Math.round(weather.currently.dewPoint)+'&#176';
+
+        console.log(last_updated);
+        console.log(weather);
+        console.log(cur_temp, feels_like, cur_hum, cur_press);
+
+        document.getElementById("cur_temp").innerHTML = cur_temp;
+        document.getElementById("feels_like").innerHTML = feels_like;
+        document.getElementById("cur_hum").innerHTML = cur_hum;
+        document.getElementById("last_updated").innerHTML = last_updated;
+        document.getElementById("high_low").innerHTML = high_low;
+        document.getElementById("summary").innerHTML = summary;
+        document.getElementById("wind_speed").innerHTML = wind_speed;
+        document.getElementById("wind_gust").innerHTML = wind_gust;
+        document.getElementById("dewpoint").innerHTML = dewpoint;
+
+        var skycons = new Skycons();
+        skycons.add(document.getElementById("weather"), icon);
+        skycons.play();
+    };
+
+    forecastSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+</script>
+<script>
+  function update() {
+    forecastSocket.send('refresh')
+  }
+</script>
+<!--
+<script>
+var weather = {{weather|safe}};
+var cur_temp = Math.round(weather.currently.temperature)+'&#176';
+var feels_like = Math.round(weather.currently.apparentTemperature)+'&#176';
+var cur_hum = Math.round(weather.currently.humidity*100)+'&#37';
+var cur_press = weather.currently.pressure;
+var unix_date = weather.currently.time;
+var updated = new Date(unix_date*1000);
+var month = updated.getMonth()+1;
+var date = updated.getDate();
+var hours = updated.getHours();
+var minutes = '0'+ updated.getMinutes();
+var last_updated = month+'/'+date+' '+hours+':'+ minutes.substr(-2);
+console.log(last_updated);
+console.log(weather);
+console.log(cur_temp, feels_like, cur_hum, cur_press);
+
+document.getElementById("cur_temp").innerHTML = cur_temp;
+document.getElementById("feels_like").innerHTML = feels_like;
+document.getElementById("cur_hum").innerHTML = cur_hum;
+document.getElementById("last_updated").innerHTML = last_updated;
+</script>
+-->

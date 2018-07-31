@@ -1,0 +1,40 @@
+{% include 'klash/nav.html' %}
+<link rel="Stylesheet" href="/static/sensors.css" />
+<html>
+<head>
+  <style>
+    body {
+      margin: 0px;
+      padding: 0px;
+      border: 0px;
+      overflow: hidden;
+      display: block;
+    }
+    footer {
+      position: fixed;
+      height: 0px;
+      bottom: 0px;
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+    }
+  </style>
+    <meta charset="utf-8"/>
+    <title>Index</title>
+</head>
+<body>
+  <div>
+<!--
+    <object id=system data=http://192.168.0.155:19999 width=100%>
+      <embed src=http://192.168.0.155:19999></embed></object>
+-->
+      <iframe id=system src="http://192.168.0.155:19999" width=100%
+
+      frameborder="0" seamless="seamless"></iframe>
+  </div>
+</body>
+<script>
+var ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+var height = (ios) ? screen.height-171 : window.innerHeight-56;
+document.getElementById("system").height=height;
+</script>
+</html>
